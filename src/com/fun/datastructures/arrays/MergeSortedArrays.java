@@ -1,21 +1,22 @@
 package com.fun.datastructures.arrays;
 
+import java.util.Arrays;
+
 public class MergeSortedArrays {
     public static void main(String[] args) {
         var array1 = new int[]{0,3,4,31};
         var array2 = new int[]{4,6,30};
 
         int[] sortedArray = mergeSortedArrays(array1, array2);
-        System.out.println(sortedArray);
+        System.out.println(Arrays.toString(sortedArray));
     }
 
     private static int[] mergeSortedArrays(int[] array1, int[] array2) {
-        var mergedArray = new int[array1.length];
+        var mergedArray = new int[array1.length + array2.length];
 
-        int array1Item = array1[0];
-        int array2Item = array2[0];
         var i = 0;
         var j = 0;
+        var k = 0;
 
         //First, check input
         if (array1.length == 0)  {
@@ -26,19 +27,29 @@ public class MergeSortedArrays {
             return array1;
         }
 
-        while (array1Item >= 0  || array2Item >= 0) {
-            System.out.println(array1Item);
-            System.out.println(array2Item);
-            if ((array2.length > array1.length) || array1Item < array2Item) {
-                mergedArray[i] = array1Item;
-                array1Item = array1[i];
+        while (i < array1.length && j < array2.length) {
+            if (array1[i] < array2[j]) {
+                mergedArray[k] = array1[i];
                 i++;
+                k++;
             }
             else {
-                mergedArray[j] = array2Item;
-                array2Item = array2[j];
+                mergedArray[k] = array2[j];
                 j++;
+                k++;
             }
+        }
+
+        while (i < array1.length) {
+            mergedArray[k] = array1[i];
+            i++;
+            k++;
+        }
+
+        while (j < array2.length) {
+            mergedArray[k] = array2[j];
+            j++;
+            k++;
         }
 
         return mergedArray;
