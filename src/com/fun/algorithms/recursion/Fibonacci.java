@@ -1,7 +1,5 @@
 package com.fun.algorithms.recursion;
 
-import java.util.ArrayList;
-
 public class Fibonacci {
 
     public static void main (String[] args) {
@@ -9,6 +7,7 @@ public class Fibonacci {
         System.out.println(fibonacciRecursive(43));
     }
 
+    //O(2^n)
     protected static int fibonacciRecursive(int n) {
         //base case
         if (n < 2) {
@@ -17,6 +16,7 @@ public class Fibonacci {
         return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
     }
 
+    //O(n)
     protected static int fibonacciIterative(int n) {
         //create an int array and set the first number to 0 and second number to 1
         int intArray[] = new int[n+2];
